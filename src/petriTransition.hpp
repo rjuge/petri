@@ -11,26 +11,25 @@ namespace petri {
   class Network;
 
   class Transition {
-  public:
+  private:
 
     std::string transition_name;
     std::vector<std::pair<poolIdf,unsigned int>> pool_in;
     std::vector<std::pair<poolIdf,unsigned int>> pool_out;
     petri::Network* net;
 
+  public:
     static bool verbose;
 
-  Transition(const std::string& transition_name);  
+    Transition(const std::string& transition_name, petri::Network* net);  
 
-  Transition(const std::string& transition_name, std::vector<std::pair<poolIdf,unsigned int>>& pool_in, std::vector<std::pair<poolIdf,unsigned int>>& pool_out, petri::Network* net);
-
-  void addInput(petri::poolIdf input_pool, unsigned int nb_token_required);
+    void addInput(petri::poolIdf input_pool, unsigned int nb_token_required);
                                                                             
-  void addOutput(petri::poolIdf output_pool, unsigned int nb_token_produced); 
+    void addOutput(petri::poolIdf output_pool, unsigned int nb_token_produced); 
  
-  operator bool()   const;
+    operator bool()   const;
   
-  void operator()() const;
+    void operator()() const;
   };
 
 }

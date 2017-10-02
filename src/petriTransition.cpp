@@ -5,23 +5,19 @@ using namespace std;
 
 bool petri::Transition::verbose = true;
 
-petri::Transition::Transition(const std::string& transition_name, std::vector<std::pair<poolIdf,unsigned int>>& pool_in, std::vector<std::pair<poolIdf,unsigned int>>& pool_out, petri::Network* net){
-
-  this->transition_name = transition_name;
-  this->pool_in = pool_in;
-  this->pool_out = pool_out;
-  this->net = net;
+petri::Transition::Transition(const std::string& transition_name, petri::Network* net)
+  : transition_name(transition_name), net(net) {
 }
 
 void petri::Transition::addInput(petri::poolIdf input_pool, unsigned int nb_token_required){
 
-  this->pool_in.push_back(std::make_pair(input_pool, nb_token_required));
+  pool_in.push_back(std::make_pair(input_pool, nb_token_required));
 
 }
 
 void petri::Transition::addOutput(petri::poolIdf output_pool, unsigned int nb_token_produced){
 
-  this->pool_out.push_back(std::make_pair(output_pool, nb_token_produced));
+  pool_out.push_back(std::make_pair(output_pool, nb_token_produced));
 
 }
 
